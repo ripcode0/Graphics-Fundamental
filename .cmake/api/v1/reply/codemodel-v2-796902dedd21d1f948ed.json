@@ -1,0 +1,404 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "External/wglad",
+					"jsonFile" : "directory-External.wglad-Debug-3bb838fe0c13d82c0f86.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "External/wglad",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "src/01-Fundamental/01-GL-Window",
+					"jsonFile" : "directory-src.01-Fundamental.01-GL-Window-Debug-6ae2efff87ca398a888f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/01-Fundamental/01-GL-Window",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "Graphics-Fundamental",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "01-GL-Window::@3a58de2bea5c233d9a53",
+					"jsonFile" : "target-01-GL-Window-Debug-e1e47567596395c2dc36.json",
+					"name" : "01-GL-Window",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Debug-94d21ea6283bf6d54b20.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "wglad::@6a9fa4447fad1d71b8bd",
+					"jsonFile" : "target-wglad-Debug-79dd17cfa7ad7d5e6dbd.json",
+					"name" : "wglad",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Release-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "External/wglad",
+					"jsonFile" : "directory-External.wglad-Release-3bb838fe0c13d82c0f86.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "External/wglad",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "src/01-Fundamental/01-GL-Window",
+					"jsonFile" : "directory-src.01-Fundamental.01-GL-Window-Release-6ae2efff87ca398a888f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/01-Fundamental/01-GL-Window",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "Graphics-Fundamental",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "01-GL-Window::@3a58de2bea5c233d9a53",
+					"jsonFile" : "target-01-GL-Window-Release-5cd450a29912ab7c6cc8.json",
+					"name" : "01-GL-Window",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Release-94d21ea6283bf6d54b20.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "wglad::@6a9fa4447fad1d71b8bd",
+					"jsonFile" : "target-wglad-Release-84c857d736eee8bec4e1.json",
+					"name" : "wglad",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-MinSizeRel-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "External/wglad",
+					"jsonFile" : "directory-External.wglad-MinSizeRel-3bb838fe0c13d82c0f86.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "External/wglad",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "src/01-Fundamental/01-GL-Window",
+					"jsonFile" : "directory-src.01-Fundamental.01-GL-Window-MinSizeRel-6ae2efff87ca398a888f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/01-Fundamental/01-GL-Window",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "MinSizeRel",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "Graphics-Fundamental",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "01-GL-Window::@3a58de2bea5c233d9a53",
+					"jsonFile" : "target-01-GL-Window-MinSizeRel-b15ca4c6e8f95ed029b3.json",
+					"name" : "01-GL-Window",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-94d21ea6283bf6d54b20.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "wglad::@6a9fa4447fad1d71b8bd",
+					"jsonFile" : "target-wglad-MinSizeRel-345c5f5876f673a276a5.json",
+					"name" : "wglad",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-RelWithDebInfo-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "External/wglad",
+					"jsonFile" : "directory-External.wglad-RelWithDebInfo-3bb838fe0c13d82c0f86.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "External/wglad",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "src/01-Fundamental/01-GL-Window",
+					"jsonFile" : "directory-src.01-Fundamental.01-GL-Window-RelWithDebInfo-6ae2efff87ca398a888f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/01-Fundamental/01-GL-Window",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "Graphics-Fundamental",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "01-GL-Window::@3a58de2bea5c233d9a53",
+					"jsonFile" : "target-01-GL-Window-RelWithDebInfo-9ee604524d961a245a6e.json",
+					"name" : "01-GL-Window",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-94d21ea6283bf6d54b20.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "wglad::@6a9fa4447fad1d71b8bd",
+					"jsonFile" : "target-wglad-RelWithDebInfo-282c5aea190c44f37c05.json",
+					"name" : "wglad",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/@ripcode/Graphics-Fundamental",
+		"source" : "C:/@ripcode/Graphics-Fundamental"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

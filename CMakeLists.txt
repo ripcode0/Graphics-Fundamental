@@ -6,37 +6,42 @@ set(CMAKE_SKIP_INSTALL_RULES TRUE)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON) #for visual studio filter folder
 set(CMAKE_SUPPRESS_REGENERATION TRUE)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+#set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+#set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(Graphics-Fundamental
     VERSION 0.1.0
-    LANGUAGES CXX
+    #LANGUAGES C CXX
     )
 
 # define globar directories
-set(INC_DIR ${CMAKE_SOURCE_DIR}/external ${CMAKE_SOURCE_DIR}/internal/Graphics)
+set(INC_DIR ${CMAKE_SOURCE_DIR}/External ${CMAKE_SOURCE_DIR}/Internal/Graphics)
 set(LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
 set(BIN_DIR ${CMAKE_SOURCE_DIR}/bin)
-set(LIBS)
+
 
 # configure external library
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/module)
 
-include(test)
+#install exernal lib : wglad stb ..etc
+include(external-config)
+
+#add_subdirectory(Internal/Graphics)
+#add_dependencies(Graphics lib::wglad)
 
 message(STATUS "include dir : ${INC_DIR}")
 message(STATUS "lib dir : ${LIB_DIR}")
 message(STATUS "binary dir : ${BIN_DIR}")
 
-# add sub project
-add_executable(${PROJECT_NAME} src/main.cpp)
+set(LIBS wglad.lib)
+set(INC_DIR ${INC_DIR} ${WGLAD_INC_DIR})
 
-# set_property(${PROJECT_NAME} PROPERTY
-#         CXX_STANDARD 20
-#         CXX_STANDARD_REQUIRED ON
-#         )
+# add sub project
+set(target 01-GL-Window)
+
+add_subdirectory(src/01-Fundamental/${target})
+
 
 
 
