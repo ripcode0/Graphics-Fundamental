@@ -1,17 +1,16 @@
 #pragma once
 
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
+#include "Window.h"
+#include <wglad/wglad.h>
 
-//TODO callback func
-
-class GLWindow
+class GLWindow : public Window
 {
 public:
     GLWindow(int cx, int cy, const char* title);
-    ~GLWindow();
+    virtual~GLWindow();
 
+    void swapBuffer() override;
+    HDC mDC{};
+    HGLRC mRC{};  
 
-    static LRESULT WINAPI WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp);
-    HWND mHwnd;
 };

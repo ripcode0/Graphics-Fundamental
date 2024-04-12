@@ -27,8 +27,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/module)
 #install exernal lib : wglad stb ..etc
 include(external-config)
 
-#add_subdirectory(Internal/Graphics)
-#add_dependencies(Graphics lib::wglad)
+add_subdirectory(Internal/Graphics)
+add_dependencies(Graphics lib::wglad)
 
 message(STATUS "include dir : ${INC_DIR}")
 message(STATUS "lib dir : ${LIB_DIR}")

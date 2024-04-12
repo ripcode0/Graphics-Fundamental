@@ -451,7 +451,6 @@ FodyWeavers.xsd
 
 #extra
 [Bb]uild/
-<<<<<<< HEAD
 .vscode/
 [Bb]in/
 CMakeFiles/
@@ -462,6 +461,6 @@ x64/
 .cmake/
 *.sin/
 *.dir/
-=======
+
 .vscode/
->>>>>>> parent of 8f26435 (up)
+
