@@ -16,13 +16,9 @@ target_include_directories(Graphics PUBLIC
 )
 
 target_link_directories(Graphics PUBLIC
-    ${BIN_DIR})
+    ${LIB_DIR})
 
 target_link_libraries(Graphics PUBLIC wglad.lib)
-
-get_target_property(LISTDIR Graphics INCLUDE_DIRECTORIES)
-
-message(STATUS "Graphics including : ${LISTDIR}")
 
 set_target_properties(Graphics PROPERTIES
     LINKER_LANGUAGE CXX
