@@ -11,7 +11,7 @@ GLWindow::GLWindow(int cx, int cy, const char *title)
     wc.hbrBackground = (HBRUSH)GetStockObject(DKGRAY_BRUSH);
     wc.hCursor = LoadCursorA(nullptr, IDC_ARROW);
     wc.lpszClassName = "ModernOpenGL";
-    wc.style = CS_VREDRAW | CS_HREDRAW;
+    wc.style = CS_VREDRAW | CS_HREDRAW | CS_OWNDC;
     wc.lpfnWndProc = GLWindow::WndProc;
 
     ATOM res = RegisterClassExA(&wc);
@@ -26,27 +26,13 @@ GLWindow::GLWindow(int cx, int cy, const char *title)
 
     if(!mHwnd) log_error("failed to create window");
 
-    WGL::createGLContextFromHwnd(mHwnd, &mRC, &mDC);
-}
+    ShowWindow(mHwnd, TRUE);
 
+}
 GLWindow::~GLWindow()
 {
-    WGL::releaseGLContext(mHwnd, mRC, mDC);
     UnregisterClassA("ModernOpenGL", GetModuleHandleA(nullptr));
     DestroyWindow(mHwnd);
-}
-
-void GLWindow::show()
-{
-    int command = SW_SHOWNA; //show window but not active
-
-    STARTUPINFOA si = {sizeof(si)};
-    GetStartupInfoA(&si);
-
-    if(si.dwFlags & STARTF_USESHOWWINDOW){
-        command = si.wShowWindow;
-    }
-    ::ShowWindow(mHwnd, command);
 }
 
 LRESULT GLWindow::WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
@@ -66,37 +52,11 @@ LRESULT GLWindow::WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
         printf("WM_CHANGED %d\n", (int)wp);
     }break;
     case WM_CLOSE:{
-        printf("close");
-        PostQuitMessage(0);
+        SendMessageA(hwnd, WM_QUIT, 0,0);
     }break;
     
     default:
         break;
     }
     return DefWindowProcA(hwnd, msg, wp, lp);
-}
-
-bool ExecWindow(GLWindow *pWindow)
-{
-    if(!pWindow) return false;
-
-    MSG msg{};
-    if(PeekMessageA(&msg, nullptr, 0, 0, PM_REMOVE)){
-        if(msg.message == WM_KEYDOWN && msg.wParam == VK_ESCAPE){
-            PostQuitMessage(0);
-            pWindow->mIsRunning = false;
-        }
-        if(msg.message == WM_QUIT) 
-            pWindow->mIsRunning = false;
-
-        TranslateMessage(&msg);
-        DispatchMessageA(&msg);
-    } 
-    return pWindow->mIsRunning;
-}
-
-void SwapChain(GLWindow *pWindow)
-{
-    if(!pWindow->mDC) log_error("HDC dosent created");
-    SwapBuffers(pWindow->mDC);
 }
