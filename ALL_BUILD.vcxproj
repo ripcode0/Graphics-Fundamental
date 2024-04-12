@@ -114,6 +114,10 @@
       <Project>{AD79515B-B6AB-303F-9A7D-C4E0EEB81DDC}</Project>
       <Name>01-GL-Window</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\@ripcode\Graphics-Fundamental\Internal\Graphics\Graphics.vcxproj">
+      <Project>{575A5102-B403-3740-A568-A4D72465FD08}</Project>
+      <Name>Graphics</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\@ripcode\Graphics-Fundamental\External\wglad\wglad.vcxproj">
       <Project>{C16082EC-49D3-3AE6-AAEA-306925AC2D22}</Project>
       <Name>wglad</Name>

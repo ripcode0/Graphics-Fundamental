@@ -1,3 +1,0 @@
-C:/@ripcode/Graphics-Fundamental/CMakeFiles/ALL_BUILD.dir
-C:/@ripcode/Graphics-Fundamental/External/wglad/CMakeFiles/wglad.dir
-C:/@ripcode/Graphics-Fundamental/src/01-Fundamental/01-GL-Window/CMakeFiles/01-GL-Window.dir

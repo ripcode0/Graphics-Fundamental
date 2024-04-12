@@ -6,13 +6,13 @@ set(CMAKE_SKIP_INSTALL_RULES TRUE)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON) #for visual studio filter folder
 set(CMAKE_SUPPRESS_REGENERATION TRUE)
 
-#set(CMAKE_CXX_STANDARD 14)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(Graphics-Fundamental
     VERSION 0.1.0
-    #LANGUAGES C CXX
+    LANGUAGES C CXX
     )
 
 # define globar directories
@@ -27,8 +27,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/module)
 #install exernal lib : wglad stb ..etc
 include(external-config)
 
-#add_subdirectory(Internal/Graphics)
-#add_dependencies(Graphics lib::wglad)
+add_subdirectory(Internal/Graphics)
+add_dependencies(Graphics lib::wglad)
 
 message(STATUS "include dir : ${INC_DIR}")
 message(STATUS "lib dir : ${LIB_DIR}")
@@ -41,6 +41,10 @@ set(INC_DIR ${INC_DIR} ${WGLAD_INC_DIR})
 set(target 01-GL-Window)
 
 add_subdirectory(src/01-Fundamental/${target})
+
+if(EXISTS ${CMAKE_SOURCE_DIR}/x64)
+file(REMOVE_RECURSE ${CMAKE_SOURCE_DIR}/x64)
+endif()
 
 
 

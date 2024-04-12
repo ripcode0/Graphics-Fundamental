@@ -452,3 +452,11 @@ FodyWeavers.xsd
 #extra
 [Bb]uild/
 .vscode/
+[Bb]in/
+CMakeFiles/
+x64/
+*.vcxproj.*/
+*.vcxproj/
+.vs/
+.cmake/
+*.sin/

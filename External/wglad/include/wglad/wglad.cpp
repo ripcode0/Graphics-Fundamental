@@ -1,6 +1,6 @@
 #include "wglad/wglad.h"
 
-static void wglad_error(char *msg)
+static void wglad_error(const char *msg)
 {
     MessageBoxA(NULL, msg, "Error", MB_OK | MB_ICONEXCLAMATION);
     exit(EXIT_FAILURE);
