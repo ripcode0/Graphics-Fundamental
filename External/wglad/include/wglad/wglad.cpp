@@ -266,6 +266,7 @@ void APIENTRY glDebugCallback(GLenum source, GLenum type, GLuint id,
 	/*debugMsg += std::to_string(debugIndex) + "\n";*/
 	debugMsg += message;
 
+	OutputDebugStringA(debugMsg.c_str());
 	const int result = MessageBoxA(NULL, debugMsg.c_str(), "GL_KHR_debug", MB_OKCANCEL);
 
 	switch (result)

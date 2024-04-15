@@ -15,7 +15,10 @@ public:
     void show();
     HWND getHandle() { return mHwnd;}
     virtual void swapBuffer() {};
+    int widht;
+    int height;
     HWND mHwnd;
+    LRESULT LocalWndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp);
 private:
     static LRESULT WINAPI WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp);
 };

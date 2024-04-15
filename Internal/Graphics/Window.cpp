@@ -20,7 +20,7 @@ Window::Window(int cx, int cy, const char* title)
     DWORD style = WS_OVERLAPPEDWINDOW;
 
     mHwnd = CreateWindowExA(NULL, wc.lpszClassName, title,
-     style, x, y, cx, cy, nullptr, 0, wc.hInstance, 0
+     style, x, y, cx, cy, nullptr, 0, wc.hInstance, this
      );
     if(!mHwnd) log_error("failed to create window %s", title);
 }
@@ -35,16 +35,42 @@ void Window::show()
     ShowWindow(mHwnd, SW_SHOWNORMAL);
 }
 
-LRESULT Window::WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
+LRESULT Window::LocalWndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
 {
     switch (msg)
     {
-    case WM_CLOSE:
-        PostQuitMessage(0);
-        break;
+    case WM_SIZE:{
+        widht = LOWORD(wp);
+        height = HIWORD(wp);
+    }break;
     
     default:
         break;
+    }
+    return DefWindowProc(hwnd, msg, wp, lp);
+}
+
+LRESULT Window::WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
+{
+    Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+    switch (msg)
+    {
+    case WM_NCCREATE:{
+        
+    }break;
+    case WM_CREATE:{
+        window = (Window*)((LPCREATESTRUCT)lp)->lpCreateParams;
+        window->mHwnd = hwnd;
+        SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)window);
+    }break;
+    case WM_CLOSE:
+        PostQuitMessage(0);
+        break;
+    default:
+        break;
+    }
+    if(window){
+        return window->LocalWndProc(hwnd, msg, wp, lp);
     }
     return DefWindowProcA(hwnd, msg, wp, lp);
 }
