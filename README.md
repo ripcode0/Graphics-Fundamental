@@ -1,5 +1,8 @@
 # Graphics Fundamental
 
+* 필수적인 라이브러리 제외하고 외부 라이브러리를 안쓰려고 노력함.
+* Here we've tried to reduce the library as much as possible, except for the essentials
+
 ## Matrix Order
 |Shader|GPU memory Layout|CPU Calculate|CPU Memory Layout|
 |-----|---|-----|-----|
