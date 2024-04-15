@@ -15,6 +15,6 @@ set_target_properties(${target} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY_RELEASE ${BIN_DIR}/${target}
 )
 
-#add_dependencies(${target} lib::Graphics lib::wglad)
+add_dependencies(${target} lib::Graphics lib::wglad)
 
 message(STATUS "project name : ${target}")
