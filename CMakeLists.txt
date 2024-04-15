@@ -6,9 +6,9 @@ set(CMAKE_SKIP_INSTALL_RULES TRUE)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON) #for visual studio filter folder
 set(CMAKE_SUPPRESS_REGENERATION TRUE)
 
-#set(CMAKE_CXX_STANDARD 14)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
-#set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(Graphics-Fundamental
     VERSION 0.1.0
@@ -40,7 +40,7 @@ set(INC_DIR ${INC_DIR} ${WGLAD_INC_DIR})
 # add sub project
 set(target 01-GL-Window)
 
-add_subdirectory(src/01-Fundamental/${target})
+add_subdirectory(Samples/01-Fundamental/${target})
 
 
 
