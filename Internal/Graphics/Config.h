@@ -3,10 +3,11 @@
 #include <iostream>
 #include <stdarg.h>
 
-#if __has_include(<windows.h>)
-#else
+// #if __has_include(<windows.h>)
+// #else
+// #include <windows.h>
+// #endif
 #include <windows.h>
-#endif
 
 #pragma warning (disable : 5082)
 
@@ -32,5 +33,5 @@ inline void __log_error(const char* code, const char* filename, int line, ...)
     char buffer[256] {};
     sprintf_s(buffer, "file : %s\nline : %d\n\n%s\n", filename, line, codeBuffer);
 
-    
+    MessageBoxA(nullptr, buffer, "fatal error!", MB_OKCANCEL);
 }

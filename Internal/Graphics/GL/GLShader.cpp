@@ -1,4 +1,8 @@
 #include "GLShader.h"
+#include <filesystem>
+#include <fstream>
+#include <sstream>
+
 
 GLDSAShader::GLDSAShader()
     : program(0)
@@ -6,41 +10,76 @@ GLDSAShader::GLDSAShader()
     
 }
 
-GLDSAShader::GLDSAShader(LPCSTR path, uint type)
+GLDSAShader::GLDSAShader(LPCSTR filename, uint type)
 {
-    if((type & GL_VERTEX_SHADER)){
-        printf("vertex shader creating\n");
+    switch (type)
+    {
+    case GL_VERTEX_SHADER: this->type = type; break;
+    case GL_FRAGMENT_SHADER: this->type = type; break;
+    case GL_GEOMETRY_SHADER: this->type = type; break;
+    case GL_TESS_CONTROL_SHADER: this->type = type; break;
+    case GL_TESS_EVALUATION_SHADER: this->type = type; break;
+    case GL_COMPUTE_SHADER: this->type = type; break;
+    default:
+        log_error("unable shader type");
+        break;
     }
+    if(!std::filesystem::exists(filename)){
+        log_error("%s not found", filename);
+    }
+    std::ifstream is(filename, std::ios::in);
+    if(!is){
+        log_error("Unable to open : %s", filename);
+    }
+    std::stringstream code;
+    code << is.rdbuf();
+    is.close();
+    
+    this->compileFromCode(code.str().c_str(), type);
 }
 
 GLDSAShader::~GLDSAShader()
 {
-    glDeleteShader(program);
+    glDeleteProgram(program);
 }
 
-void GLDSAShader::create(LPCSTR code, uint32 type)
+void GLDSAShader::compileFromCode(LPCSTR code, uint type)
 {
     program = glCreateShaderProgramv(type, 1, &code);
-    glObjectLabel(GL_PROGRAM, program,-1,"GLDSAShder");
-    
-    compile(program);
-}
 
-void GLDSAShader::setUniform1f(const char* name, float f){
-    GLint location = glGetAttribLocation(program, name);
-    glProgramUniform1f(program, location, f);
-}
-
-void GLDSAShader::compile(uint32 prog)
-{
     GLint compiled = 0;
-    glProgramParameteri(prog, GL_PROGRAM_SEPARABLE, GL_TRUE);
-    glGetProgramiv(prog, GL_LINK_STATUS, &compiled);
+    glProgramParameteri(program, GL_PROGRAM_SEPARABLE, GL_TRUE);
+    glGetProgramiv(program, GL_LINK_STATUS, &compiled);
 
     if(compiled == GL_FALSE){
         char err[512] {};
-        glGetProgramInfoLog(prog, 512, nullptr, err);
+        glGetProgramInfoLog(program, 512, nullptr, err);
         MessageBoxA(NULL, err, "Shader Compile Error : ", MB_OK);
-        glDeleteProgram(prog);
+        glDeleteProgram(program);
     }
 }
+
+void GLDSAShader::setUniform1f(const char* name, const float f){
+    GLint location = glGetUniformLocation(program, name);
+    glProgramUniform1f(program, location, f);
+}
+
+void GLDSAShader::setUniform2f(const char *name, const float *f)
+{
+    GLint location = glGetUniformLocation(program, name);
+    glProgramUniform2f(program, location, f[0], f[1]);
+}
+
+void GLDSAShader::setUnifrom3f(const char* name, const float* f)
+{
+    GLint location = glGetUniformLocation(program, name);
+    glProgramUniform3f(program, location, f[0], f[1], f[2]);
+}
+
+void GLDSAShader::setUniformMat4f(const char* name, const float* f,  bool transpose)
+{
+    GLint location = glGetUniformLocation(program, name);
+    glProgramUniformMatrix4fv(program, location, 1, transpose, f);
+}
+
+
