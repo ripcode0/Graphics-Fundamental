@@ -18,4 +18,4 @@
 |OpenGL|Right Hand CCW| Left Hand CW|
 |DirectX|Left Hand CW| Left Hand CW|
 
-[!coodinate system](https://www.scratchapixel.com/images/geometry/rhlh.png)
+[![coodinate system](https://www.scratchapixel.com/images/geometry/rhlh.png)]
