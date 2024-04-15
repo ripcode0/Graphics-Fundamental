@@ -7,14 +7,15 @@
 |HLSL|Comlumn Major|Comlumn Major|Row Major|
 
 ## NDC
-|API| Z-Depth| Intergration|
+|API| Z-Depth| Z-Depth Intergrated|
 |--|--|--|
-|OpenGL|-1 ~ 1|0 ~ 1|
-|DirectX|0 ~ 1|0 ~ 1|
+|OpenGL|-1 to 1|0 to 1|
+|DirectX|0 to 1|0 to 1|
 
 ## Draw Order
-|API|Codinate System|integrated|
+|API|Coodinate System|Coodinate System Integrated|
 |--|--|--|
-|OpenGL|Right Hand : default| Left Hand CCW|
-|DirectX|Left Hand : default| Left Hand CCW|
+|OpenGL|Right Hand CCW| Left Hand CW|
+|DirectX|Left Hand CW| Left Hand CW|
 
+[!coodinate system](https://www.scratchapixel.com/images/geometry/rhlh.png)
