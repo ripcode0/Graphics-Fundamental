@@ -44,10 +44,10 @@ int main(int args, char* argv[])
 
     
 
-    GLDSAShader vertShader{};
+    GLShaderDSA vertShader{};
     vertShader.compileFromCode(vert, GL_VERTEX_SHADER);
 
-    GLDSAShader pixelShader{};
+    GLShaderDSA pixelShader{};
     pixelShader.compileFromCode(pixel, GL_FRAGMENT_SHADER);
 
     uint32 pipeline{};

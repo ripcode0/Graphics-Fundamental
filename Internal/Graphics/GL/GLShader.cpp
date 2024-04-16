@@ -4,13 +4,13 @@
 #include <sstream>
 
 
-GLDSAShader::GLDSAShader()
+GLShaderDSA::GLShaderDSA()
     : program(0)
 {
     
 }
 
-GLDSAShader::GLDSAShader(LPCSTR filename, uint type)
+GLShaderDSA::GLShaderDSA(LPCSTR filename, uint type)
 {
     switch (type)
     {
@@ -38,17 +38,17 @@ GLDSAShader::GLDSAShader(LPCSTR filename, uint type)
     this->compileFromCode(code.str().c_str(), type);
 }
 
-GLDSAShader::~GLDSAShader()
+GLShaderDSA::~GLShaderDSA()
 {
     glDeleteProgram(program);
 }
 
-void GLDSAShader::compileFromCode(LPCSTR code, uint type)
+void GLShaderDSA::compileFromCode(LPCSTR code, uint type)
 {
     program = glCreateShaderProgramv(type, 1, &code);
 
     GLint compiled = 0;
-    glProgramParameteri(program, GL_PROGRAM_SEPARABLE, GL_TRUE);
+    //glProgramParameteri(program, GL_PROGRAM_SEPARABLE, GL_TRUE);//i dont think it's nessesary
     glGetProgramiv(program, GL_LINK_STATUS, &compiled);
 
     if(compiled == GL_FALSE){
@@ -59,24 +59,24 @@ void GLDSAShader::compileFromCode(LPCSTR code, uint type)
     }
 }
 
-void GLDSAShader::setUniform1f(const char* name, const float f){
+void GLShaderDSA::setUniform1f(const char* name, const float f){
     GLint location = glGetUniformLocation(program, name);
     glProgramUniform1f(program, location, f);
 }
 
-void GLDSAShader::setUniform2f(const char *name, const float *f)
+void GLShaderDSA::setUniform2f(const char *name, const float *f)
 {
     GLint location = glGetUniformLocation(program, name);
     glProgramUniform2f(program, location, f[0], f[1]);
 }
 
-void GLDSAShader::setUnifrom3f(const char* name, const float* f)
+void GLShaderDSA::setUnifrom3f(const char* name, const float* f)
 {
     GLint location = glGetUniformLocation(program, name);
     glProgramUniform3f(program, location, f[0], f[1], f[2]);
 }
 
-void GLDSAShader::setUniformMat4f(const char* name, const float* f,  bool transpose)
+void GLShaderDSA::setUniformMat4f(const char* name, const float* f,  bool transpose)
 {
     GLint location = glGetUniformLocation(program, name);
     glProgramUniformMatrix4fv(program, location, 1, transpose, f);
