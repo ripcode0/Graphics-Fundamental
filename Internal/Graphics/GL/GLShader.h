@@ -13,11 +13,11 @@ struct NonCopyable
     //operator GLShader() = delete;
 };
 
-struct GLDSAShader : public NonCopyable
+struct GLShaderDSA : public NonCopyable
 {
-    GLDSAShader();
-    GLDSAShader(LPCSTR path, uint type);
-    ~GLDSAShader();
+    GLShaderDSA();
+    GLShaderDSA(LPCSTR path, uint type);
+    ~GLShaderDSA();
 
     void compileFromCode(LPCSTR code, uint type);
 
@@ -30,5 +30,5 @@ struct GLDSAShader : public NonCopyable
     void setUniform2f(const char* name, const float* f);
     void setUnifrom3f(const char *name, const float* f);
     void setUniformMat4f(const char* name, const float* f, bool transpose = false);
-    
+
 };

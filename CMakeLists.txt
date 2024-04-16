@@ -38,9 +38,20 @@ set(LIBS wglad.lib)
 set(INC_DIR ${INC_DIR} ${WGLAD_INC_DIR})
 
 # add sub project
-set(target 01-GL-Window)
 
-add_subdirectory(Samples/01-Fundamental/${target})
+set(Fundamental
+    01-GL-Window
+    02-GL-Buffer
+)
+
+foreach(target ${Fundamental})
+    message(STATUS "configure : ${target}")
+    add_subdirectory(Samples/01-Fundamental/${target})
+endforeach()
+
+
+
+
 
 
 

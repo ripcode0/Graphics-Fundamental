@@ -17,4 +17,3 @@ set_target_properties(${target} PROPERTIES
 
 add_dependencies(${target} lib::Graphics lib::wglad)
 
-message(STATUS "project name : ${target}")

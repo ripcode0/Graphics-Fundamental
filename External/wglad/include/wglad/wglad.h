@@ -1,6 +1,6 @@
 #pragma once
 
-#define WIN32_LEAN_AND_MEAN 1
+#define WIN32_LEAN_AND_MEAN 
 #pragma comment(lib, "opengl32")
 
 #pragma warning(disable:4005)
