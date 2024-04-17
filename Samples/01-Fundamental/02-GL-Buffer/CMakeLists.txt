@@ -27,6 +27,8 @@ file(GLOB shaders
     ${CMAKE_CURRENT_SOURCE_DIR}/*.tes
     ${CMAKE_CURRENT_SOURCE_DIR}/*.gs
     ${CMAKE_CURRENT_SOURCE_DIR}/*.cs
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.hlsl
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.glsl
 )
 
 foreach(shader ${shaders})

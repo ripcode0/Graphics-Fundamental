@@ -30,6 +30,13 @@ Window::~Window()
     if(mHwnd) DestroyWindow(mHwnd);
 }
 
+void Window::onResize(int cx, int cy)
+{
+    if(pfnOnResize){
+        pfnOnResize(cx, cy);
+    }
+}
+
 void Window::show()
 {
     ShowWindow(mHwnd, SW_SHOWNORMAL);
@@ -39,10 +46,72 @@ LRESULT Window::LocalWndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
 {
     switch (msg)
     {
+    case WM_ACTIVATE:{
+        if(LOWORD(wp) == WA_INACTIVE){
+            printf("[window] inactive\n");
+            mState.bPaused = true;
+        }else{
+            mState.bPaused = false;
+        }
+        return 0;
+    }
     case WM_SIZE:{
-        widht = LOWORD(wp);
-        height = HIWORD(wp);
+        int cx = (int)LOWORD(lp);
+        int cy = (int)HIWORD(lp);
+        //printf("[window] size %d : %d\n", cx, cy);
+        if(wp == SIZE_MINIMIZED){
+            mState.bPaused = true;
+            mState.bMinimized = true;
+            mState.bMaximized = false;
+        }
+        else if(wp == SIZE_MAXIMIZED){
+            mState.bPaused = false;
+            mState.bMinimized = false;
+            mState.bMaximized = true;
+            onResize(cx,cy);
+        }
+        else if(wp == SIZE_RESTORED){
+            //printf("[window] RESTORED %d : %d\n", cx, cy);
+            if(mState.bMinimized){
+                mState.bPaused = false;
+                mState.bMinimized = false;
+                onResize(cx, cy);
+            }
+            else if(mState.bMaximized){
+                mState.bPaused = false;
+                mState.bMaximized = false;
+                onResize(cx, cy);
+            }
+            else if(mState.bResizing){
+                //printf("[window] ignore resize\n");
+                //return 0;
+            }
+            else{
+                onResize(cx, cy);
+            }
+        }
+        return 0;
     }break;
+    case WM_GETMINMAXINFO:{
+        ((MINMAXINFO*)lp)->ptMinTrackSize = {300, 300};
+        return 0;
+    }
+    case WM_ENTERSIZEMOVE:{
+        mState.bResizing = true;
+        mState.bPaused = true;
+        return 0;
+    }
+    case WM_EXITSIZEMOVE:{
+        mState.bPaused = false;
+        mState.bResizing = false;
+        RECT rc{};
+        GetClientRect(hwnd, &rc);
+        onResize(rc.right - rc.left, rc.bottom - rc.top);
+        return 0;
+    }
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        break;
     
     default:
         break;
@@ -55,17 +124,12 @@ LRESULT Window::WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
     Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
     switch (msg)
     {
-    case WM_NCCREATE:{
-        
-    }break;
     case WM_CREATE:{
         window = (Window*)((LPCREATESTRUCT)lp)->lpCreateParams;
         window->mHwnd = hwnd;
         SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)window);
+        return 0;
     }break;
-    case WM_CLOSE:
-        PostQuitMessage(0);
-        break;
     default:
         break;
     }

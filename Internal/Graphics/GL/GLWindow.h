@@ -9,8 +9,11 @@ public:
     GLWindow(int cx, int cy, const char* title);
     virtual~GLWindow();
 
+    void onResize(int cx, int cy) override;
     void swapBuffer() override;
     HDC mDC{};
-    HGLRC mRC{};  
+    HGLRC mRC{};
+
+      
 
 };
