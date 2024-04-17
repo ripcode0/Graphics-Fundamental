@@ -3,8 +3,18 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include <windows.h>
-#include "Config.h"
+#include "Common/Config.h"
 #include <assert.h>
+
+struct WindowState
+{
+    bool bPaused;
+    bool bMinimized;
+    bool bMaximized;
+    bool bResizing;
+};
+
+typedef void (*PFNWINRESIZE)(int,int);
 
 class Window
 {
@@ -12,14 +22,22 @@ public:
     Window(int cx, int cy, const char* title);
     virtual~Window();
 
+    
+    virtual void onResize(int cx, int cy);
+
     void show();
     HWND getHandle() { return mHwnd;}
     virtual void swapBuffer() {};
-    int widht;
+
+    //PFN
+    PFNWINRESIZE pfnOnResize{};
+        
+    int width;
     int height;
     HWND mHwnd;
     LRESULT LocalWndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp);
 private:
+    WindowState mState{};
     static LRESULT WINAPI WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp);
 };
 

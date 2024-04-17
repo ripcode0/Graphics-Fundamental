@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Config.h"
+#include "Common/Config.h"
 #include "wglad/wglad.h"
 
 #define glCheckError() __glCheckError(__FILE__, __LINE__)
