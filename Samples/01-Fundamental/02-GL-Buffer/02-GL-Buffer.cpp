@@ -3,13 +3,14 @@
 
 int main(int args, char* argv[])
 {
-    GLWindow window(1024, 780, "Modern OpenGL 4.6 Buffers");
+    GLWindow window(1024, 780, "Modern OpenGL 4.6 Buffers [press 1] : basic shader [press 2] : smoke shader");
 
     //Left Hand System
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glFrontFace(GL_CW);
+    wglSwapIntervalEXT(0);
 
     //            ST                      POS(INDEX)
     // [0,1] ------------ [1,1]  [-1, 1] 1 --------- [1, 1] 2          
@@ -55,19 +56,26 @@ int main(int args, char* argv[])
     glBindVertexArray(vao);
 
     //create UBO
-    uint ubo;
+    uint ubo, ubo1;
     glCreateBuffers(1, &ubo);
     glNamedBufferStorage(ubo, sizeof(float) * 2, nullptr, GL_DYNAMIC_STORAGE_BIT);
     glBindBufferBase(GL_UNIFORM_BUFFER, 0, ubo);
 
+    glCreateBuffers(1, &ubo1);
+    glNamedBufferStorage(ubo1, sizeof(float), nullptr, GL_DYNAMIC_STORAGE_BIT);
+    glBindBufferBase(GL_UNIFORM_BUFFER, 1, ubo1);
+
     GLShaderDSA vertShader("basicVS.glsl", GL_VERTEX_SHADER);
     GLShaderDSA pixelShader("basicPS.glsl", GL_FRAGMENT_SHADER);
+    GLShaderDSA smokeShader("smokePS.glsl", GL_FRAGMENT_SHADER);
 
     uint pipeline{};
     glCreateProgramPipelines(1, &pipeline);
 
     glUseProgramStages(pipeline, GL_VERTEX_SHADER_BIT, vertShader);
     glUseProgramStages(pipeline, GL_FRAGMENT_SHADER_BIT, pixelShader);
+    //bind main shader stage pipeline
+    glBindProgramPipeline(pipeline);
 
     window.show();
     while (BeginFrame(&window))
@@ -77,6 +85,13 @@ int main(int args, char* argv[])
         glClearBufferfv(GL_COLOR, 0, clearColor);
         glClearBufferfv(GL_DEPTH, 0, &depth);
 
+        if(GetAsyncKeyState(0x31) & 0x8000){
+            glUseProgramStages(pipeline, GL_FRAGMENT_SHADER_BIT, pixelShader);
+        }
+        else if(GetAsyncKeyState(0x32) & 0x8000){
+            glUseProgramStages(pipeline, GL_FRAGMENT_SHADER_BIT, smokeShader);
+        }
+        
         //get current main vao from context
         GLint currentVAO{};
         glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &currentVAO);
@@ -92,8 +107,9 @@ int main(int args, char* argv[])
         float resolution[2] = {(float)viewport[2], (float)viewport[3]};
         glNamedBufferSubData(ubo, 0, sizeof(float) * 2, resolution);
 
-        //bind shader stage pipeline
-        glBindProgramPipeline(pipeline);
+        static float gDelta = 0.f;
+        glNamedBufferSubData(ubo1, 0, sizeof(float), &gDelta);
+        gDelta += 0.0001f;
         
         //draw
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);

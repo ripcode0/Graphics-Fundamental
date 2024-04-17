@@ -16,9 +16,9 @@ Window::Window(int cx, int cy, const char* title)
 
     int x = (GetSystemMetrics(SM_CXSCREEN) - cx) /2;
     int y = (GetSystemMetrics(SM_CYSCREEN) - cy) /2;
-
+    
     DWORD style = WS_OVERLAPPEDWINDOW;
-
+    
     mHwnd = CreateWindowExA(NULL, wc.lpszClassName, title,
      style, x, y, cx, cy, nullptr, 0, wc.hInstance, this
      );
@@ -154,6 +154,19 @@ bool executeWindow(Window *window)
         TranslateMessage(&msg);
         DispatchMessageA(&msg);
     }
+    auto timer = &window->mTimer;
+    timer->tick();
+    static int frameCount = 0;
+    static float timeElapsed = 0.0f;
+    frameCount++;
+    if((timer->totalTime() - timeElapsed) >= 1.0f){
+        float fps = (float)frameCount;
+        float mspf = 1000.f / fps;
+        printf("fps : %f : %f : %f\n", fps, mspf, timer->deltaTime());
+        frameCount =0;
+        timeElapsed += 1.f;
+    }
+
     return isRunning;
 }
 
