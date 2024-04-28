@@ -4,13 +4,15 @@
 #include <sstream>
 
 
+
+
 GLShaderDSA::GLShaderDSA()
     : program(0)
 {
     
 }
 
-GLShaderDSA::GLShaderDSA(LPCSTR filename, uint type)
+GLShaderDSA::GLShaderDSA(std::string filename, uint type)
 {
     switch (type)
     {

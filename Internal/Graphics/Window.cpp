@@ -143,7 +143,19 @@ bool executeWindow(Window *window)
 {
     bool isRunning = true;
     MSG msg{};
-    if(PeekMessageA(&msg, nullptr, 0, 0, PM_REMOVE)){
+    // if(PeekMessageA(&msg, nullptr, 0, 0, PM_REMOVE)){
+    //     if(msg.message == WM_KEYDOWN && msg.wParam == VK_ESCAPE){
+    //         PostQuitMessage(0);
+    //         isRunning = false;
+    //     }
+    //     if(msg.message == WM_QUIT){
+    //         isRunning = false;
+    //     }
+    //     TranslateMessage(&msg);
+    //     DispatchMessageA(&msg);
+    // }
+
+    while(PeekMessageA(&msg, nullptr, 0, 0, PM_REMOVE)){
         if(msg.message == WM_KEYDOWN && msg.wParam == VK_ESCAPE){
             PostQuitMessage(0);
             isRunning = false;
@@ -154,18 +166,18 @@ bool executeWindow(Window *window)
         TranslateMessage(&msg);
         DispatchMessageA(&msg);
     }
-    auto timer = &window->mTimer;
-    timer->tick();
-    static int frameCount = 0;
-    static float timeElapsed = 0.0f;
-    frameCount++;
-    if((timer->totalTime() - timeElapsed) >= 1.0f){
-        float fps = (float)frameCount;
-        float mspf = 1000.f / fps;
-        printf("fps : %f : %f : %f\n", fps, mspf, timer->deltaTime());
-        frameCount =0;
-        timeElapsed += 1.f;
-    }
+    // auto timer = &window->mTimer;
+    // timer->tick();
+    // static int frameCount = 0;
+    // static float timeElapsed = 0.0f;
+    // frameCount++;
+    // if((timer->totalTime() - timeElapsed) >= 1.0f){
+    //     float fps = (float)frameCount;
+    //     float mspf = 1000.f / fps;
+    //     printf("fps : %f : %f : %f\n", fps, mspf, timer->deltaTime());
+    //     frameCount =0;
+    //     timeElapsed += 1.f;
+    // }
 
     return isRunning;
 }

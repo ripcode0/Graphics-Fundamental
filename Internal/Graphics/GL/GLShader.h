@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GLConfig.h"
-
+#include <string>
 //GLShader uused DSA 
 
 struct NonCopyable
@@ -16,7 +16,7 @@ struct NonCopyable
 struct GLShaderDSA : public NonCopyable
 {
     GLShaderDSA();
-    GLShaderDSA(LPCSTR path, uint type);
+    GLShaderDSA(std::string filename, uint type);
     ~GLShaderDSA();
 
     void compileFromCode(LPCSTR code, uint type);
@@ -30,5 +30,10 @@ struct GLShaderDSA : public NonCopyable
     void setUniform2f(const char* name, const float* f);
     void setUnifrom3f(const char *name, const float* f);
     void setUniformMat4f(const char* name, const float* f, bool transpose = false);
-
 };
+
+// struct GLShader : public NonCopyable
+// {
+//     GLShader(LPCSTR )
+// };
+

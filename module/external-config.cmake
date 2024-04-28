@@ -6,3 +6,5 @@ file(DOWNLOAD "https://raw.githubusercontent.com/ripcode0/wglad/main/module/wgla
 endif()
 
 include(wglad-download)
+
+include(stb-config)

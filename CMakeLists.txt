@@ -49,7 +49,13 @@ foreach(target ${Fundamental})
     add_subdirectory(Samples/01-Fundamental/${target})
 endforeach()
 
+set(Experimental
+    01-FPSCounter
+)
 
+foreach(target ${Experimental})
+    add_subdirectory(Samples/Experimenal/${target})
+endforeach()
 
 
 

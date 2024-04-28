@@ -65,8 +65,10 @@ int main(int args, char* argv[])
     glNamedBufferStorage(ubo1, sizeof(float), nullptr, GL_DYNAMIC_STORAGE_BIT);
     glBindBufferBase(GL_UNIFORM_BUFFER, 1, ubo1);
 
+    //GLShaderDSA vertShader("basicVS.glsl", GL_VERTEX_SHADER);
     GLShaderDSA vertShader("basicVS.glsl", GL_VERTEX_SHADER);
-    GLShaderDSA pixelShader("basicPS.glsl", GL_FRAGMENT_SHADER);
+    //GLShaderDSA pixelShader("basicPS.glsl", GL_FRAGMENT_SHADER);
+    GLShaderDSA pixelShader("noisePS.glsl", GL_FRAGMENT_SHADER);
     GLShaderDSA smokeShader("smokePS.glsl", GL_FRAGMENT_SHADER);
 
     uint pipeline{};
@@ -85,6 +87,7 @@ int main(int args, char* argv[])
         glClearBufferfv(GL_COLOR, 0, clearColor);
         glClearBufferfv(GL_DEPTH, 0, &depth);
 
+        //Press 1 or 2 choose the shader
         if(GetAsyncKeyState(0x31) & 0x8000){
             glUseProgramStages(pipeline, GL_FRAGMENT_SHADER_BIT, pixelShader);
         }
@@ -98,7 +101,7 @@ int main(int args, char* argv[])
 
         //bind ibo vbo to vao
         glVertexArrayElementBuffer(currentVAO, ibo);
-        glVertexArrayVertexBuffer(currentVAO, 0, vbo, 0, sizeof(3) * 5);
+        glVertexArrayVertexBuffer(currentVAO, 0, vbo, 0, sizeof(float) * 5);
 
         //get width,height and update ubo
         GLint viewport[4] ={};
